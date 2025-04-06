@@ -1,0 +1,20 @@
+{
+    "name": "DeepFake Detection Backend - Python",
+    "build": {
+      "dockerfile": "../Dockerfile",
+      "context": ".."
+    },
+    "settings": {
+      "terminal.integrated.defaultProfile.linux": "bash",
+      "python.defaultInterpreterPath": "/usr/local/bin/python",
+      "python.linting.pylintEnabled": true,
+      "python.linting.enabled": true
+    },
+    "extensions": [
+      "ms-python.python",
+      "ms-azuretools.vscode-docker"
+    ],
+    "forwardPorts": [8080],
+    "postCreateCommand": "pip install --no-cache-dir -r requirements.txt"
+}
+  

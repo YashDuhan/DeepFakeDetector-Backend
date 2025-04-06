@@ -1,0 +1,12 @@
+# Install CPU-only versions from PyTorch index
+torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cpu
+
+# Other necessary dependencies
+Pillow>=9.0.0
+timm>=0.6.12
+# numpy is installed as a dependency of torch/torchvision
+
+# FastAPI dependencies
+fastapi>=0.100.0
+uvicorn[standard]>=0.20.0
