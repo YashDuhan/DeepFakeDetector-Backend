@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import Dict
 import logging
@@ -41,6 +42,15 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# --- CORS Middleware ---
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
+
 # --- Global Detector Instance ---
 # Instantiate the detector globally. FastAPI handles the lifecycle.
 # Consider dependency injection for more complex scenarios or testing.
@@ -64,6 +74,13 @@ except Exception as e:
 
 
 # --- API Endpoints ---
+
+@app.get("/", tags=["General"])
+async def read_root():
+    """
+    Root endpoint providing a welcome message.
+    """
+    return {"message": "Welcome to the DeepFake Detector API!"}
 
 @app.get("/health", response_model=HealthResponse, tags=["Monitoring"])
 async def health_check():
